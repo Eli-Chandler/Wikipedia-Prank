@@ -24,7 +24,7 @@ def log():
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def proxy(path):
-    if 'wiki' in path or request.args.get('search') is not None:
+    if path.startswith('wiki/') or request.args.get('search') is not None:
         l.append(path + ' ' + str(request.args.get('search')))
 
     url = f"{WIKIPEDIA_URL}/{path}"
